@@ -26,9 +26,9 @@ namespace Fractal
             graphics = this.CreateGraphics();
             mandelbort.Paint();
 
-            var mandelbort2 = new Mandelbort(10000, 10000);
-            mandelbort2.Paint();
-            mandelbort2.Canvas.Save("c:\\temp\\m.bmp");
+            //var mandelbort2 = new Mandelbort(10000, 10000);
+            //mandelbort2.Paint();
+            //mandelbort2.Canvas.Save("c:\\temp\\m.bmp");
         }
 
         private void Form1_Shown(object sender, EventArgs e)

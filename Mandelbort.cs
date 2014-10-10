@@ -23,7 +23,7 @@ namespace Fractal
     {
         public Bitmap Canvas {get; set;}
 
-        int maxIterations = 250;
+        int maxIterations = 400;
         double kLeangth = 4;
 
         public Mandelbort(int width, int height) 
@@ -33,13 +33,22 @@ namespace Fractal
 
         public void Paint()
         {
+            //orig
             //double MinRe = -2.0f; // real
             //double MaxRe = 1.0f;
             //double MinIm = -1.0f; // imaginary
 
+            //1
             double MinRe = -0.6f; // real
             double MaxRe = -0.4f;
             double MinIm = -0.7f; // imaginary
+
+            //2
+            //MinRe = -1.80991280915827;
+            //MaxRe = -1.80991280652736;
+            //MinIm = 4.76644643672749E-5;// -4.76670952784024E-5;
+            ////MaxIm=-4.76644643672749E-5
+
             double MaxIm = MinIm + (MaxRe - MinRe) * Canvas.Height / Canvas.Width;
 
             double Re_factor = (MaxRe - MinRe) / (Canvas.Width - 1);
@@ -54,7 +63,10 @@ namespace Fractal
                     var res = GetPointColor(cx, cy);
                     var n = res.Y;
                     int pColor = (int)((n / /*kLeangth*/maxIterations)*255);
-                    Color color = (res.X >= kLeangth) ? Color.FromArgb((int)(pColor*0.35), pColor, (int)(pColor*0.8)) : Color.Black;
+                    Color color = (res.X >= kLeangth) ? Color.FromArgb(
+                        (int)((res.X / kLeangth)*20 )/*(int)(pColor*0.35)*/,
+                        pColor>190?pColor:5, 
+                        (int)(pColor*0.8)) : Color.Black;
                     //n, 255 – n, 50 mod n * 3
                     //Color color = (res.X >= kLeangth) ? Color.FromArgb(pColor, 255-pColor, 50 % pColor*3) : Color.Black;
                     Canvas.SetPixel(x, y, color);
